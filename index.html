@@ -537,6 +537,34 @@
       .item-foot { padding-top: 8px; gap: 6px 8px; flex-wrap: wrap; font-size: 11.5px; }
       .metric { font-size: 11.5px; }
     }
+
+    /* 좁은 모바일: meta-row 라벨 위 / 값 아래로 쌓아 값이 한 줄에 들어가게 */
+    @media (max-width: 640px) {
+      .meta-row {
+        display: block;
+        padding: 10px 0;
+        gap: 0;
+      }
+      .meta-row span:first-child {
+        display: block;
+        font-size: 10.5px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 2px;
+      }
+      .meta-row span:last-child {
+        display: block;
+        text-align: left;
+        font-size: 12px;
+      }
+    }
+
+    /* 360px급 안드로이드: 카드 헤더(제목+태그) 한 줄 유지 */
+    @media (max-width: 380px) {
+      .cap-head { gap: 4px 8px; }
+      .cap-title { font-size: 13.5px; }
+      .cap-tag { font-size: 10px; letter-spacing: 0.02em; }
+    }
   </style>
 </head>
 <body>
@@ -676,7 +704,7 @@
         </div>
         <div class="cap-card">
           <div class="cap-head">
-            <span class="cap-title">대규모 시딩 및 국내·해외 배송 전반 관리</span>
+            <span class="cap-title">대규모 시딩·국내외 배송 관리</span>
             <span class="cap-tag">발송 미스 0건</span>
           </div>
           <p class="cap-desc">Google Sheets·Excel로 시딩 물량 배송·회수 일정 관리. 국내·해외 3PL 출고·배송·회수까지 전 과정 직접 운영.</p>
