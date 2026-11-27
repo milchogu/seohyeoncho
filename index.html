@@ -18,6 +18,8 @@
       --accent: #e84a3c;
     }
 
+    .nowrap { white-space: nowrap; }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
@@ -30,6 +32,13 @@
     }
 
     a { color: inherit; text-decoration: none; }
+
+    /* 한글 줄바꿈: 단어 중간에서 끊기지 않게 */
+    .hero-sub, .meta-row span, .exp-note, .cap-title, .cap-desc, .lang-cert,
+    .item-title, .item-account, .kpi-sub, .section-title {
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
 
     /* Top bar */
     header {
@@ -144,6 +153,12 @@
       font-size: 15px;
       color: var(--muted);
       max-width: 480px;
+    }
+
+    .hero-name-en {
+      font-weight: 400;
+      color: var(--muted);
+      font-size: 28px;
     }
 
     .meta-table {
@@ -485,6 +500,8 @@
     }
 
     @media (max-width: 800px) {
+      header .nav-inner { padding: 12px 16px; }
+      main { padding: 32px 20px 60px; }
       .hero { grid-template-columns: 1fr; gap: 24px; }
       .kpi-strip { grid-template-columns: 1fr; }
       .kpi-cell { padding: 18px 0; border-right: 0; border-bottom: 1px solid var(--line); }
@@ -492,7 +509,32 @@
       .kpi-cell:last-child { border-bottom: 0; }
       .exp-grid, .cap-grid, .lang-grid, .menu-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
-      h1 { font-size: 32px; }
+      .section { padding: 30px 0; }
+      h1 { font-size: 29px; display: flex; flex-direction: column; gap: 2px; }
+      .hero-name-en { font-size: 16px; letter-spacing: 0.02em; }
+      .hero-sub { font-size: 14px; }
+      .meta-row { gap: 12px; }
+      .meta-row span:last-child { text-align: right; }
+      .cap-head { flex-wrap: wrap; gap: 4px 10px; }
+      .cap-tag { font-size: 10.5px; }
+
+      /* Content Menu 카드: 썸네일 왼쪽 고정 · 설명 오른쪽 */
+      .item { flex-direction: row; align-items: stretch; }
+      .item .thumb {
+        flex: 0 0 96px;
+        width: 96px;
+        min-height: 120px;
+        align-self: stretch;
+        aspect-ratio: auto;
+        border-bottom: 0;
+        border-right: 1px solid var(--line);
+      }
+      .thumb-tag { top: 6px; left: 6px; font-size: 9px; padding: 2px 6px; }
+      .item-body { padding: 12px 12px 12px 14px; gap: 4px; min-width: 0; }
+      .item-title { font-size: 13px; line-height: 1.35; }
+      .item-account { font-size: 11.5px; }
+      .item-foot { padding-top: 8px; gap: 6px 8px; flex-wrap: wrap; font-size: 11.5px; }
+      .metric { font-size: 11.5px; }
     }
   </style>
 </head>
@@ -522,7 +564,7 @@
     <section class="hero" id="about">
       <div>
         <div class="eyebrow">Global K-Beauty Marketing · US &amp; JP</div>
-        <h1>조서현 <span style="font-weight:400; color:var(--muted); font-size:28px;">Seohyeon Cho</span></h1>
+        <h1>조서현 <span class="hero-name-en">Seohyeon Cho</span></h1>
         <p class="hero-sub">
           메노킨(MENOKIN) US·JP 마케팅팀에서 크리에이터 시딩과 숏폼 콘텐츠를 기획·운영합니다.
         </p>
@@ -530,8 +572,8 @@
       <div class="meta-table">
         <div class="meta-row"><span>Experience</span><span>메노킨 (2026.03–) · 올리브영 (약 2년)</span></div>
         <div class="meta-row"><span>Education</span><span>이화여대(심리학·경영학) 졸업 · 아오야마가쿠인대 교환학생</span></div>
-        <div class="meta-row"><span>Background</span><span>인도네시아 자카르타 호주국제학교 (2013.03–2017.12)</span></div>
-        <div class="meta-row"><span>Languages</span><span>EN 원어민급 · JP 비즈니스</span></div>
+        <div class="meta-row"><span>Background</span><span>Australian Intercultural School Jakarta (2013.03–2017.12)</span></div>
+        <div class="meta-row"><span>Languages</span><span>EN Business · JP Business</span></div>
         <div class="meta-row"><span>Contact</span><span>milchogu@gmail.com</span></div>
       </div>
     </section>
@@ -546,21 +588,21 @@
             <span class="lang-name">Korean</span>
             <span class="lang-level">Native</span>
           </div>
-          <div class="lang-cert">모국어 · 이화여자대학교 졸업</div>
+          <div class="lang-cert">모국어</div>
         </div>
         <div class="lang-card">
           <div class="lang-head">
             <span class="lang-name">English</span>
-            <span class="lang-level">원어민급</span>
+            <span class="lang-level">Business</span>
           </div>
-          <div class="lang-cert">자카르타 호주국제학교 (2013.03–2017.12) · OPIc AL / TOEIC 975 (갱신 예정)</div>
+          <div class="lang-cert">OPIc AL / TOEIC 975 (갱신 예정)</div>
         </div>
         <div class="lang-card">
           <div class="lang-head">
             <span class="lang-name">Japanese</span>
-            <span class="lang-level">비즈니스</span>
+            <span class="lang-level">Business</span>
           </div>
-          <div class="lang-cert">JLPT N1 (보유) · 아오야마가쿠인대 교환학생 · OPIc AL (갱신 예정)</div>
+          <div class="lang-cert">JLPT N1 (보유) · OPIc AL (갱신 예정)</div>
         </div>
       </div>
     </section>
@@ -576,7 +618,7 @@
             <span>2026.09 – Present</span>
           </div>
           <div class="exp-role">해외 마케팅팀 매니저 · Global Marketing</div>
-          <div class="exp-note">US·JP 유가 인플루언서 협업 운영 · 에이전시 커뮤니케이션 · Qoo10·BFCM 타임라인 조율</div>
+          <div class="exp-note">US·JP 유가 인플루언서 협업 운영 · 메가와리·BFCM 타임라인 조율 · 에이전시 커뮤니케이션</div>
         </div>
         <div class="exp-card">
           <div class="exp-top">
@@ -613,9 +655,9 @@
         <div class="cap-card">
           <div class="cap-head">
             <span class="cap-title">US·JP 유가 인플루언서 협업 운영</span>
-            <span class="cap-tag">Paid · Qoo10 · BFCM</span>
+            <span class="cap-tag">Instagram · TikTok · YouTube</span>
           </div>
-          <p class="cap-desc">에이전시 커뮤니케이션과 Qoo10·Amazon BFCM 프로모션 타임라인에 맞춘 업로드·팔로업 조율.</p>
+          <p class="cap-desc">Amazon·Qoo10 메가와리·BFCM 프로모션 타임라인에 맞춘 업로드·팔로업 조율 · 에이전시 커뮤니케이션.</p>
         </div>
         <div class="cap-card">
           <div class="cap-head">
@@ -627,23 +669,23 @@
         <div class="cap-card">
           <div class="cap-head">
             <span class="cap-title">영어·일본어 네이티브 카피 &amp; 스크립트</span>
-            <span class="cap-tag">KR · EN · JP</span>
+            <span class="cap-tag">EN · JP</span>
           </div>
           <p class="cap-desc">US·JP 크리에이터가 바로 촬영에 쓰는 영어·일본어 스크립트·가이드 작성.</p>
         </div>
         <div class="cap-card">
           <div class="cap-head">
-            <span class="cap-title">대규모 시딩 트래킹 &amp; 3PL 출고 관리</span>
+            <span class="cap-title">대규모 시딩 및 국내·해외 배송 전반 관리</span>
             <span class="cap-tag">발송 미스 0건</span>
           </div>
-          <p class="cap-desc">Google Sheets·Excel로 시딩 발송·회수 일정 관리. 국내·해외 3PL 배송 트래킹.</p>
+          <p class="cap-desc">Google Sheets·Excel로 시딩 물량 배송·회수 일정 관리. 국내·해외 3PL 출고·배송·회수까지 전 과정 직접 운영.</p>
         </div>
       </div>
     </section>
 
     <section class="section" id="seeding-metrics" style="padding-bottom: 0; border-bottom: 0;">
       <div class="section-head" style="margin-bottom: 0;">
-        <div class="section-title">Gifted Seeding &amp; SNS Growth · 무가 시딩 · SNS 성과</div>
+        <div class="section-title">Gifted Seeding &amp; SNS Growth · <span class="nowrap">무가 시딩 · SNS 성과</span></div>
       </div>
       <div class="kpi-strip" aria-label="Key Metrics">
         <div class="kpi-cell">
@@ -759,7 +801,6 @@
             </div>
           </div>
         </article>
-      </div>
       </div>
     </section>
   </main>
